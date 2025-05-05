@@ -19,6 +19,13 @@ Creating a blog using Azure services, such as App Service or Container Apps, to 
 
 **Target Audience:** developers learning about containerization, Azure cloud deployment, or simple frontend development
 
+Architecture of the project:
+![Screenshot From 2025-05-05 21-02-44](https://github.com/user-attachments/assets/4eda2f62-1c26-45a2-b184-37a66d1b0e0f)
+
+New Look of the WebApp V2 updated (& redeployed) container
+![image](https://github.com/user-attachments/assets/a65eb97a-35c4-4326-8e84-ac407d6fcf53)
+![Screenshot From 2025-05-05 21-05-24](https://github.com/user-attachments/assets/98a852a3-5a20-4c6e-88c1-72b03a594f71)
+
 ---
 
 ## Here's what goes with this project.
