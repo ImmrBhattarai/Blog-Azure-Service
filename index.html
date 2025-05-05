@@ -11,6 +11,11 @@
 </head>
 
 <body class="bg-light">
+    <div id="loading" class="position-fixed top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center bg-white" style="z-index: 1050; opacity: 0.8;">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
     <div class="container mt-5">
         <h1 class="mb-4">Blog</h1>
         <a href="create-post.html" class="btn btn-primary mb-4">Create New Post</a>
@@ -22,13 +27,19 @@
     <script>
         // Function to fetch posts from localStorage
         function getPosts() {
-            const posts = localStorage.getItem('posts');
-            return posts ? JSON.parse(posts) : [];
+            // Simulate loading delay for demonstration
+            return new Promise(resolve => {
+                setTimeout(() => {
+                    const posts = localStorage.getItem('posts');
+                    resolve(posts ? JSON.parse(posts) : []);
+                }, 600); // 600ms delay
+            });
         }
 
         // Function to render posts on the page
-        function renderPosts() {
-            const posts = getPosts();
+        async function renderPosts() {
+            document.getElementById('loading').style.display = 'flex';
+            const posts = await getPosts();
             const postsContainer = document.getElementById('posts');
             postsContainer.innerHTML = '';
 
@@ -46,6 +57,7 @@
                     postsContainer.appendChild(postLink);
                 });
             }
+            document.getElementById('loading').style.display = 'none';
         }
 
         // Renders posts when the page loads
