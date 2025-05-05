@@ -11,11 +11,6 @@
 </head>
 
 <body class="bg-light">
-    <div id="loading" class="position-fixed top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center bg-white" style="z-index: 1050; opacity: 0.8;">
-        <div class="spinner-border text-primary" role="status">
-            <span class="visually-hidden">Loading...</span>
-        </div>
-    </div>
     <div class="container mt-5">
         <h1 class="mb-4">Blog</h1>
         <a href="create-post.html" class="btn btn-primary mb-4">Create New Post</a>
@@ -27,37 +22,44 @@
     <script>
         // Function to fetch posts from localStorage
         function getPosts() {
-            // Simulate loading delay for demonstration
+            // Removed simulation of loading delay
             return new Promise(resolve => {
-                setTimeout(() => {
-                    const posts = localStorage.getItem('posts');
-                    resolve(posts ? JSON.parse(posts) : []);
-                }, 600); // 600ms delay
+                try {
+                    const postsJson = localStorage.getItem('posts');
+                    resolve(postsJson ? JSON.parse(postsJson) : []);
+                } catch (error) {
+                    console.error("Error parsing posts from localStorage:", error);
+                    resolve([]); // Resolve with empty array on error to prevent hanging
+                }
             });
         }
 
         // Function to render posts on the page
         async function renderPosts() {
-            document.getElementById('loading').style.display = 'flex';
-            const posts = await getPosts();
-            const postsContainer = document.getElementById('posts');
-            postsContainer.innerHTML = '';
+            try {
+                const posts = await getPosts();
+                const postsContainer = document.getElementById('posts');
+                postsContainer.innerHTML = '';
 
-            if(posts.length === 0) {
-                postsContainer.innerHTML = '<p class="text-muted">No posts found.</p>';
-            } else {
-                posts.forEach(post => {
-                    const postLink = document.createElement('a');
-                    postLink.href = `post-detail.html?id=${post.id}`;
-                    postLink.className = "list-group-item list-group-item-action";
-                    postLink.innerHTML = `
-                        <h5>${post.title}</h5>
-                        <p class="mb-0">${post.content.substring(0, 100)}...</p>
-                    `;
-                    postsContainer.appendChild(postLink);
-                });
+                if(posts.length === 0) {
+                    postsContainer.innerHTML = '<p class="text-muted">No posts found.</p>';
+                } else {
+                    posts.forEach(post => {
+                        const postLink = document.createElement('a');
+                        postLink.href = `post-detail.html?id=${post.id}`;
+                        postLink.className = "list-group-item list-group-item-action";
+                        postLink.innerHTML = `
+                            <h5>${post.title}</h5>
+                            <p class="mb-0">${post.content.substring(0, 100)}...</p>
+                        `;
+                        postsContainer.appendChild(postLink);
+                    });
+                }
+            } catch (error) {
+                console.error("Error rendering posts:", error);
+                // Optionally display an error message to the user
+                document.getElementById('posts').innerHTML = '<p class="text-danger">Could not load posts. Please try again later.</p>';
             }
-            document.getElementById('loading').style.display = 'none';
         }
 
         // Renders posts when the page loads
