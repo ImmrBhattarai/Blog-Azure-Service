@@ -8,16 +8,103 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap'); /* Import Google Font */
+
+        body {
+            font-family: 'Roboto', sans-serif; /* Use Roboto font */
+            background: linear-gradient(to bottom right, #eef2f3, #f8f9fa); /* Subtle gradient background */
+            color: #444; /* Slightly darker text */
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 850px; /* Slightly wider container */
+            background-color: #ffffff;
+            padding: 40px; /* More padding */
+            border-radius: 10px; /* Smoother corners */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.12); /* More pronounced shadow */
+            margin-top: 4rem !important;
+            margin-bottom: 4rem;
+        }
+        h1 {
+            color: #0056b3;
+            border-bottom: 3px solid #007bff; /* Thicker, brighter underline */
+            padding-bottom: 15px;
+            margin-bottom: 2rem !important;
+            font-weight: 700; /* Bolder heading */
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            padding: 10px 20px; /* Larger button */
+            font-size: 1.05em;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 123, 255, 0.3);
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+            transform: translateY(-2px); /* Slight lift on hover */
+            box-shadow: 0 4px 8px rgba(0, 86, 179, 0.4);
+        }
+        #posts .list-group-item {
+            border: none; /* Remove default border */
+            border-left: 5px solid #007bff;
+            margin-bottom: 20px;
+            border-radius: 6px;
+            padding: 20px; /* More padding inside posts */
+            background-color: #fdfdfd; /* Very light background for posts */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.07);
+            transition: all 0.3s ease;
+        }
+        #posts .list-group-item:hover {
+            background-color: #f0f8ff; /* Lighter blue background on hover */
+            border-left-color: #0056b3;
+            transform: translateX(5px); /* Slight shift right on hover */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            cursor: pointer;
+        }
+        #posts .list-group-item h5 {
+            color: #0056b3;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+        #posts .list-group-item p {
+            color: #555;
+            font-size: 1em; /* Slightly larger post content preview */
+        }
+        .text-muted {
+            font-style: italic;
+            color: #777 !important;
+        }
+        .text-danger {
+            font-weight: bold;
+            color: #dc3545 !important;
+        }
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1rem 0;
+            color: #6c757d;
+            font-size: 0.9em;
+            border-top: 1px solid #dee2e6;
+        }
+    </style>
 </head>
 
 <body class="bg-light">
     <div class="container mt-5">
-        <h1 class="mb-4">Blog</h1>
+        <h1 class="mb-4">Azure WebApp hosted Blog</h1>
         <a href="create-post.html" class="btn btn-primary mb-4">Create New Post</a>
         <div id="posts" class="list-group">
             <!-- Posts will be injected here via JavaScript -->
         </div>
     </div>
+
+    <footer>
+        Azure WebApp hosted Blog Project by Suraj Bhattarai &copy; 2025
+    </footer>
 
     <script>
         // Function to fetch posts from localStorage
